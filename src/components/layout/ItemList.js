@@ -2,25 +2,23 @@ import React, { useEffect, useState } from 'react'
 import "bootstrap/dist/css/bootstrap.min.css"
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
-// import { useRequest } from '../../hooks/useRequest';
 
+export const ItemList = () => {
 
-export const CustomerList = () => {
-
-    const [customer, setCustomers] = useState([]);
+    const [item, setItem] = useState([]);
     const navigate = useNavigate();
-    // const { datos, create, readAll, update, remove } = useRequest('http://localhost:8080/api/customer');
+
 
     useEffect(() => {
-        getCustomers();
-        // readAll();
+        getItems();
     }, []);
 
 
-    const getCustomers = async () => {
+    const getItems = async () => {
         try {
-            const result = await axios.get('http://localhost:8080/api/customer');
-            setCustomers(result.data);
+            const result = await axios.get('http://localhost:8080/api/item');
+            console.log(result.data);
+            setItem(result.data);
         } catch (error) {
             console.log(error);
         }
@@ -28,12 +26,12 @@ export const CustomerList = () => {
 
 
 
-    const deleteCustomer = async (id) => {
+    const deleteItem = async (id) => {
         try {
-            const response = await axios.delete(`http://localhost:8080/api/customer/${id}`);
+            const response = await axios.delete(`http://localhost:8080/api/item/${id}`);
             console.log(response.data);
-            const customerUpdated = customer.filter((customer) => customer.id !== id);
-            setCustomers(customerUpdated);
+            const itemUpdated = item.filter((item) => item.id !== id);
+            setItem(itemUpdated);
         } catch (error) {
             console.log(error);
         }
@@ -42,6 +40,7 @@ export const CustomerList = () => {
     const goToCustomerCard = (id) => {
         navigate(`/customer/${id}`);
     }
+
 
     const activeCheck = () => {
 
@@ -53,23 +52,21 @@ export const CustomerList = () => {
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Phone</th>
+                    <th scope="col">Price</th>
                     <th scope="col">Active</th>
                     <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
-                {customer.map((customer) => {
+                {item.map((item) => {
                     return (
-                        <tr key={customer.id}  >
-                            <td>{customer.id}</td>
-                            <td>{customer.name}</td>
-                            <td>{customer.email}</td>
-                            <td>{customer.phone}</td>
+                        <tr key={item.id}  >
+                            <td>{item.id}</td>
+                            <td>{item.name}</td>
+                            <td>{item.price}</td>
                             <td>
                                 <div className="form-check">
-                                    {!customer.active ?
+                                    {!item.active ?
                                         <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" onChange={activeCheck} />
                                         :
                                         <input className="form-check-input" type="checkbox" value="" id="flexCheckDefault" checked onChange={activeCheck} />
@@ -77,8 +74,8 @@ export const CustomerList = () => {
                                 </div>
                             </td>
                             <td>
-                                <button className='btn btn-outline-danger' onClick={(e) => deleteCustomer(customer.id)}>Delete</button>
-                                <button className='btn btn-outline-primary mx-3' onClick={(e) => goToCustomerCard(customer.id)}>See</button>
+                                <button className='btn btn-outline-danger' onClick={(e) => deleteItem(item.id)}>Delete</button>
+                                <button className='btn btn-outline-primary mx-3' onClick={(e) => goToCustomerCard(item.id)}>See</button>
                             </td>
 
                         </tr>

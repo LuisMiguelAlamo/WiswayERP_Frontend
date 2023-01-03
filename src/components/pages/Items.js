@@ -1,11 +1,11 @@
 import React from 'react'
-import { CustomerList } from '../layout/CustomerList'
+import { ItemList } from '../layout/ItemList'
 
 export const Items = () => {
     return (
         <div>
             <h1>Items</h1>
-            <CustomerList></CustomerList>
+            <ItemList></ItemList>
         </div>
     )
 }
