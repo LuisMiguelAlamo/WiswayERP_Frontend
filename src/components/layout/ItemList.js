@@ -37,8 +37,8 @@ export const ItemList = () => {
         }
     }
 
-    const goToCustomerCard = (id) => {
-        navigate(`/customer/${id}`);
+    const goToItemCard = (id) => {
+        navigate(`/item/${id}`);
     }
 
 
@@ -75,7 +75,7 @@ export const ItemList = () => {
                             </td>
                             <td>
                                 <button className='btn btn-outline-danger' onClick={(e) => deleteItem(item.id)}>Delete</button>
-                                <button className='btn btn-outline-primary mx-3' onClick={(e) => goToCustomerCard(item.id)}>See</button>
+                                <button className='btn btn-outline-primary mx-3' onClick={(e) => goToItemCard(item.id)}>See</button>
                             </td>
 
                         </tr>

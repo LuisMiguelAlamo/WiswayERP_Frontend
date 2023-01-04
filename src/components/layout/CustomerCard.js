@@ -86,8 +86,8 @@ export const CustomerCard = () => {
                 </div>
                 <div className="mb-3 form-check">
                     {
-                        !customer.active ? <input type="checkbox" className="form-check-input" id="exampleCheck1" name='active' />
-                            : <input type="checkbox" className="form-check-input" id="exampleCheck1" name='active' checked />
+                        !customer.active ? <input type="checkbox" className="form-check-input" id="exampleCheck1" name='active' value={checked} onChange={handleChange} />
+                            : <input type="checkbox" className="form-check-input" id="exampleCheck1" name='active' checked value={checked} onChange={handleChange} />
                     }
 
                     <label className="form-check-label" htmlFor="exampleCheck1">Active</label>

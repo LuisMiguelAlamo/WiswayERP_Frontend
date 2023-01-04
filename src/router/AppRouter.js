@@ -10,6 +10,9 @@ import { Purchases } from '../components/pages/Purchases'
 import { Sales } from '../components/pages/Sales'
 import { Vendors } from '../components/pages/Vendors'
 import { AddCustomerPage } from '../components/layout/AddCustomerPage'
+import { ItemCard } from '../components/layout/ItemCard'
+import { AddItemPage } from '../components/layout/AddItemPage'
+import { SaleCard } from '../components/layout/SaleCard'
 
 export const AppRouter = () => {
     return (
@@ -29,7 +32,10 @@ export const AppRouter = () => {
                     <Route path='/purchases' element={<Purchases></Purchases>}></Route>
                     <Route path='/purchases' element={<Purchases></Purchases>}></Route>
                     <Route path='/customer/:id' element={<CustomerCard></CustomerCard>}></Route>
+                    <Route path='/item/:id' element={<ItemCard></ItemCard>}></Route>
+                    <Route path='/sale/:id' element={<SaleCard></SaleCard>}></Route>
                     <Route path='/addCustomer/' element={<AddCustomerPage></AddCustomerPage>}></Route>
+                    <Route path='/addItem/' element={<AddItemPage></AddItemPage>}></Route>
                 </Routes>
             </div>
 
