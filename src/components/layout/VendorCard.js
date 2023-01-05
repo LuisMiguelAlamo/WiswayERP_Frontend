@@ -3,21 +3,21 @@ import { useParams } from "react-router-dom";
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
-export const CustomerCard = () => {
+export const VendorCard = () => {
 
     const [checked, setChecked] = useState(false);
-    const [customer, setCustomer] = useState({});
+    const [vendor, setVendor] = useState({});
     const params = useParams();
     const navigate = useNavigate();
 
     useEffect(() => {
-        getCustomer();
+        getVendor();
     }, []);
 
-    const getCustomer = async () => {
+    const getVendor = async (req, res) => {
         try {
-            const result = await axios.get("http://localhost:8080/api/customer/" + params.id);
-            setCustomer(result.data);
+            const result = await axios.get("http://localhost:8080/api/vendor/" + params.id);
+            setVendor(result.data);
             setChecked(result.data.active);
             console.log(result.data.active);
         } catch (error) {
@@ -25,24 +25,23 @@ export const CustomerCard = () => {
         }
     }
 
-    const editCustomer = async (e) => {
+    const editVendor = async (e) => {
         e.preventDefault();
         // let data = new FormData(e.target);
 
-        const newCustomer = {
+        const newVendor = {
             name: e.target.name.value,
-            email: e.target.email.value,
+            address: e.target.address.value,
             phone: e.target.phone.value,
             active: checked
         };
         /* data.forEach((value, key) => {
-            newCustomer[key] = value;
+            newVendor[key] = value;
         }); */
         try {
-            const result = await axios.put("http://localhost:8080/api/customer/" + params.id, newCustomer);
+            const result = await axios.put("http://localhost:8080/api/vendor/" + params.id, newVendor);
             console.log(result.data);
-            console.log(e.target.active.value);
-            navigate(`/customers`);
+            navigate(`/vendors`);
         } catch (error) {
             console.log(error);
         }
@@ -53,34 +52,33 @@ export const CustomerCard = () => {
     }
 
 
-
     return (
-        <div className='customer-card'>
-            <h1>Customer Card</h1>
+        <div className='main-card'>
+            <h1>Vendor Card</h1>
             <div className='card mb-5'>
                 <div className="card">
-                    <h5 className="card-header">{customer.name}</h5>
+                    <h5 className="card-header">{vendor.name}</h5>
                     <div className="card-body">
-                        <h5 className="card-title">{customer.email}</h5>
+                        <h5 className="card-title">{vendor.address}</h5>
                     </div>
                     <div className="card-body">
-                        <h5 className="card-title">{customer.phone}</h5>
+                        <h5 className="card-title">{vendor.phone}</h5>
                     </div>
                 </div>
             </div>
 
-            <form className='w-25' onSubmit={editCustomer}>
+            <form className='w-25' onSubmit={editVendor}>
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Name</label>
-                    <input type="text" className="form-control" id="" aria-describedby="emailHelp" defaultValue={customer.name} name="name" />
+                    <input type="text" className="form-control" id="" aria-describedby="emailHelp" defaultValue={vendor.name} name="name" />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="exampleInputPassword1" className="form-label">Email</label>
-                    <input type="email" className="form-control" id="exampleInputEmail1" defaultValue={customer.email} name="email" />
+                    <label htmlFor="exampleInputPassword1" className="form-label">Address</label>
+                    <input type="text" className="form-control" id="exampleInputEmail1" defaultValue={vendor.address} name="address" />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleInputPassword1" className="form-label">Phone</label>
-                    <input type="text" className="form-control" id="exampleInputEmail1" defaultValue={customer.phone} name="phone" />
+                    <input type="text" className="form-control" id="exampleInputEmail1" defaultValue={vendor.phone} name="phone" />
                 </div>
                 <div className="mb-3 form-check">
                     <input type="checkbox" className="form-check-input" id="exampleCheck1" name='active' checked={checked} onChange={handleChange} />

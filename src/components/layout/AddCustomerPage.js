@@ -27,6 +27,7 @@ export const AddCustomerPage = () => {
 
     return (
         <div>
+            <h1>Add a new Customer</h1>
             <form className='w-25' onSubmit={addCustomer}>
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Name</label>

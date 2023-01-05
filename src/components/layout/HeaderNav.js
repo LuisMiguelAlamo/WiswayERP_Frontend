@@ -29,6 +29,9 @@ export const HeaderNav = () => {
                         <li className="nav-item">
                             <NavLink to="/purchases" className="nav-link">Purchases</NavLink>
                         </li>
+                        <li className="nav-item">
+                            <NavLink to="/products" className="nav-link">Products</NavLink>
+                        </li>
                     </ul>
                     <form className="form-inline my-2 my-lg-0 display-row">
                         <input className="form-control mr-sm-2 rm-12" type="search" placeholder="Search" aria-label="Search" />

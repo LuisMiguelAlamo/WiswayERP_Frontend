@@ -13,6 +13,9 @@ import { AddCustomerPage } from '../components/layout/AddCustomerPage'
 import { ItemCard } from '../components/layout/ItemCard'
 import { AddItemPage } from '../components/layout/AddItemPage'
 import { SaleCard } from '../components/layout/SaleCard'
+import { VendorCard } from '../components/layout/VendorCard'
+import { AddVendorPage } from '../components/layout/AddVendorPage'
+import { Product } from '../components/pages/Product'
 
 export const AppRouter = () => {
     return (
@@ -30,12 +33,14 @@ export const AppRouter = () => {
                     <Route path='/sales' element={<Sales></Sales>}></Route>
                     <Route path='/vendors' element={<Vendors></Vendors>}></Route>
                     <Route path='/purchases' element={<Purchases></Purchases>}></Route>
-                    <Route path='/purchases' element={<Purchases></Purchases>}></Route>
+                    <Route path='/products' element={<Product></Product>}></Route>
                     <Route path='/customer/:id' element={<CustomerCard></CustomerCard>}></Route>
                     <Route path='/item/:id' element={<ItemCard></ItemCard>}></Route>
                     <Route path='/sale/:id' element={<SaleCard></SaleCard>}></Route>
+                    <Route path='/vendor/:id' element={<VendorCard></VendorCard>}></Route>
                     <Route path='/addCustomer/' element={<AddCustomerPage></AddCustomerPage>}></Route>
                     <Route path='/addItem/' element={<AddItemPage></AddItemPage>}></Route>
+                    <Route path='/addVendor/' element={<AddVendorPage></AddVendorPage>}></Route>
                 </Routes>
             </div>
 

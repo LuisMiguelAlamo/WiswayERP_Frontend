@@ -18,6 +18,7 @@ export const ItemCard = () => {
         try {
             const result = await axios.get("http://localhost:8080/api/item/" + params.id);
             setItem(result.data);
+            setChecked(result.data.active);
         } catch (error) {
             console.log(error);
         }
@@ -30,7 +31,7 @@ export const ItemCard = () => {
         const newItem = {
             name: e.target.name.value,
             price: e.target.price.value,
-            active: e.target.active.checked
+            active: checked
         };
         /* data.forEach((value, key) => {
             newItem[key] = value;
@@ -49,14 +50,11 @@ export const ItemCard = () => {
         setChecked(event.target.checked);
     }
 
-    const saveItem = (e) => {
-        e.preventDefault();
-    }
 
 
     return (
         <div className='item-card'>
-
+            <h1>Item Card</h1>
             <div className='card mb-5'>
                 <div className="card">
                     <h5 className="card-header">{item.name}</h5>
@@ -76,11 +74,7 @@ export const ItemCard = () => {
                     <input type="text" className="form-control" id="exampleInputEmail1" defaultValue={item.price} name="price" />
                 </div>
                 <div className="mb-3 form-check">
-                    {
-                        !item.active ? <input type="checkbox" className="form-check-input" id="exampleCheck1" name='active' />
-                            : <input type="checkbox" className="form-check-input" id="exampleCheck1" name='active' checked />
-                    }
-
+                    <input type="checkbox" className="form-check-input" id="exampleCheck1" name='active' checked={checked} onChange={handleChange} />
                     <label className="form-check-label" htmlFor="exampleCheck1">Active</label>
                 </div>
                 <button type="submit" className="btn btn-primary">Edit</button>
